@@ -5,11 +5,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.hw04gymlogtvandergroen.Database.GymLogRepository;
 import com.example.hw04gymlogtvandergroen.Database.entities.GymLog;
@@ -35,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         
-        repository = new GymLogRepository(getApplication());
+        repository = GymLogRepository.getRepository(getApplication());
         
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
 
@@ -43,21 +39,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
-                insertGymLogRecord();
+                insertGymlogRecord();
                 updateDisplay();
             }
         });
     }
 
-    private void insertGymLogRecord() {
+    private void insertGymlogRecord() {
         GymLog log = new GymLog(mExercise, mWeight, mReps);
         repository.insertGymLog(log);
     }
     private void updateDisplay() {
         String currentInfo = binding.logDisplayTextView.getText().toString();
+        Log.d(TAG, "current info: " + currentInfo);
         String newDisplay = String.format(Locale.US, "Exercise:%s%nWeight:%.2f%nReps:%d%n=-=-=-=%n%s", mExercise, mWeight, mReps, currentInfo);
-
         binding.logDisplayTextView.setText(newDisplay);
+        Log.i(TAG, repository.getAllLogs().toString());
     }
 
     private void getInformationFromDisplay() {
