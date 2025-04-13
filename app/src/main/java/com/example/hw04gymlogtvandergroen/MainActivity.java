@@ -12,7 +12,6 @@ import com.example.hw04gymlogtvandergroen.Database.entities.GymLog;
 import com.example.hw04gymlogtvandergroen.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     String mExercise = "";
     double mWeight = 0.0;
     int mReps = 0;
+    int loggedInUserID = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        GymLog log = new GymLog(mExercise, mWeight, mReps);
+        GymLog log = new GymLog(mExercise, mWeight, mReps, loggedInUserID);
         repository.insertGymLog(log);
     }
     private void updateDisplay() {
