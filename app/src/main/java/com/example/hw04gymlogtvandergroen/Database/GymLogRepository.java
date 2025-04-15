@@ -84,6 +84,11 @@ public class GymLogRepository {
         return userDAO.getUserByUserId(userId);
     }
 
+    public LiveData<List<GymLog>> getAllLogsByUserIDLiveData(int loggedInUserId){
+        return gymLogDAO.getRecordsByUserID(loggedInUserId);
+    }
+
+    @Deprecated
     public ArrayList<GymLog> getAllLogsByUserID(int loggedInUserId) {
         Future<ArrayList<GymLog>> future = GymLogDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<GymLog>>() {

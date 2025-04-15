@@ -14,4 +14,5 @@
     <string name="login">Login!</string>
     <string name="preference_file_key">GymLogPreferenceFileName</string>
     <string name="preference_userId_key">GymLogPreferenceUserIdKey</string>
+    <string name="hello">HELLO</string>
 </resources>

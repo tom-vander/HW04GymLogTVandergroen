@@ -16,7 +16,6 @@ import com.example.hw04gymlogtvandergroen.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
-
     private GymLogRepository repository;
 
     @Override

@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey;
 import com.example.hw04gymlogtvandergroen.Database.GymLogDatabase;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity(tableName = GymLogDatabase.gymLogTable)
@@ -17,7 +18,6 @@ public class GymLog {
     private double weight;
     private int reps;
     private LocalDateTime date;
-
     private int userId;
 
     public GymLog(String exercise, double weight, int reps, int userId) {
@@ -31,10 +31,11 @@ public class GymLog {
     @NonNull
     @Override
     public String toString() {
-        return  exercise + '\n' +
-                "weight:" + weight + '\n' +
-                "reps:" + reps + '\n' +
-                "date:" + date.toString() + '\n' +
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MM/dd/yyyy  h:mm a");
+        return  exercise + '\n' + "=-=-=-=-=-=-=\n" +
+                "Weight: " + weight + " lbs" + '\n' +
+                "Reps: " + reps + '\n' +
+                "Date: " + date.format(dateFormat) + '\n' +
                 "=-=-=-=-=-=-=\n";
     }
 
